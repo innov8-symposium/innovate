@@ -10,7 +10,18 @@ const HeroSection: React.FC = () => {
 
   const handleRegisterClick = () => {
     const section = document.getElementById("technical-events");
-    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (section) {
+      const navbarOffset = 80; // Adjust if needed
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - navbarOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -47,20 +58,20 @@ const HeroSection: React.FC = () => {
           textAlign: "center",
           width: "100%",
           maxWidth: "1200px",
-          zIndex: 2,
+          zIndex: 5, // 🔥 Ensure content stays above effects
+          position: "relative",
         }}
       >
-        {/* ================= DEPARTMENT (AUTO SCALE FONT) ================= */}
+        {/* Department */}
         <p
           style={{
-            fontSize: "clamp(12px, 3vw, 20px)",   // 🔥 FONT SHRINKS ON SMALL SCREENS
+            fontSize: "clamp(12px, 3vw, 20px)",
             letterSpacing: "clamp(0.08em, 0.22vw, 0.22em)",
             textTransform: "uppercase",
             marginBottom: "8px",
             color: isStrangerWorld
               ? "rgba(255,120,120,0.9)"
               : "rgba(120,170,255,0.9)",
-
             whiteSpace: "nowrap",
             paddingInline: "14px",
             opacity: 0,
@@ -70,17 +81,16 @@ const HeroSection: React.FC = () => {
           Department of Computer Science and Engineering
         </p>
 
-        {/* ================= PROUDLY PRESENTS ================= */}
+        {/* Proudly Presents */}
         <p
           style={{
-            fontSize: "clamp(10px, 2.4vw, 14px)", // 🔥 SHRINKS FASTER
+            fontSize: "clamp(10px, 2.4vw, 14px)",
             letterSpacing: "clamp(0.14em, 0.28vw, 0.32em)",
             textTransform: "uppercase",
             marginBottom: "28px",
             color: isStrangerWorld
               ? "rgba(255,150,150,0.75)"
               : "rgba(150,190,255,0.75)",
-
             whiteSpace: "nowrap",
             paddingInline: "14px",
             opacity: 0,
@@ -90,7 +100,7 @@ const HeroSection: React.FC = () => {
           Proudly Presents
         </p>
 
-        {/* ================= TITLE IMAGE ================= */}
+        {/* Title Images */}
         <div
           style={{
             position: "relative",
@@ -106,9 +116,12 @@ const HeroSection: React.FC = () => {
             style={{
               width: "100%",
               height: "auto",
-              transition: "all 0.7s ease",
+              transition: "opacity 0.7s ease",
               opacity: isStrangerWorld ? 0 : 1,
-              position: isStrangerWorld ? "absolute" : "relative",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              pointerEvents: "none", // 🔥 Prevent image blocking button
             }}
           />
 
@@ -118,14 +131,14 @@ const HeroSection: React.FC = () => {
             style={{
               width: "100%",
               height: "auto",
-              transition: "all 0.7s ease",
+              transition: "opacity 0.7s ease",
               opacity: isStrangerWorld ? 1 : 0,
-              position: isStrangerWorld ? "relative" : "absolute",
+              pointerEvents: "none", // 🔥 Prevent image blocking button
             }}
           />
         </div>
 
-        {/* ================= TAGLINE ================= */}
+        {/* Tagline */}
         <p
           style={{
             fontSize: "clamp(15px, 4vw, 26px)",
@@ -142,7 +155,7 @@ const HeroSection: React.FC = () => {
           Upside Down of Innovation
         </p>
 
-        {/* ================= CTA ================= */}
+        {/* CTA Button */}
         <button
           onClick={handleRegisterClick}
           style={{
@@ -157,6 +170,8 @@ const HeroSection: React.FC = () => {
             background: isStrangerWorld ? "#b91c1c" : "#1e40af",
             color: "#fff",
             transition: "all 0.4s ease",
+            position: "relative",
+            zIndex: 10, // 🔥 Always clickable
           }}
         >
           Register Now
@@ -167,7 +182,7 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* ================= FALLING STARS ================= */}
+      {/* Falling Stars */}
       <div
         style={{
           position: "absolute",
