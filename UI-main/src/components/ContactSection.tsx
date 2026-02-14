@@ -32,13 +32,15 @@ const ContactSection: React.FC = () => {
     },
   ];
 
-  /* ✅ COMMON TEXT STYLE — TIMES NEW ROMAN */
   const commonTextStyle: React.CSSProperties = {
     fontFamily: "'Times New Roman', Times, serif",
     fontWeight: 500,
     letterSpacing: "0.06em",
     lineHeight: "1.6",
   };
+
+  const mapLink =
+    "https://maps.app.goo.gl/P7Dn68Gd4HvgutNB9";
 
   return (
     <section
@@ -76,7 +78,7 @@ const ContactSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Cards Grid */}
+        {/* Grid */}
         <div
           style={{
             display: "grid",
@@ -84,6 +86,7 @@ const ContactSection: React.FC = () => {
             gap: "24px",
           }}
         >
+          {/* Coordinators */}
           {coordinators.map((coord, index) => (
             <div
               key={index}
@@ -189,7 +192,7 @@ const ContactSection: React.FC = () => {
             </h3>
 
             <a
-              href="https://www.instagram.com/cse.loading"
+              href="https://www.instagram.com/innov82k26?igsh=cGVoemJ0M3gwZ3hk"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -203,12 +206,15 @@ const ContactSection: React.FC = () => {
               }}
             >
               <Instagram size={24} />
-              @cse.loading
+              @innov82k26
             </a>
           </div>
 
-          {/* Find Us */}
-          <div
+          {/* Find Us - FULL CARD CLICKABLE */}
+          <a
+            href={mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               padding: "24px",
               borderRadius: "16px",
@@ -220,6 +226,9 @@ const ContactSection: React.FC = () => {
               background: isStrangerWorld
                 ? "rgba(0,0,0,0.6)"
                 : "rgba(30,41,59,0.6)",
+              textDecoration: "none",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
             }}
           >
             <h3
@@ -243,61 +252,14 @@ const ContactSection: React.FC = () => {
                   : "rgba(203,213,225,0.8)",
               }}
             >
-              <MapPin size={18} />
-              <a
-                href="https://maps.app.goo.gl/P7Dn68Gd4HvgutNB9"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  ...commonTextStyle,
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-              >
+              <MapPin size={20} />
+              <span style={commonTextStyle}>
                 Department of CSE VTMT Engineering College
-              </a>
+                <br />
+                Click to open in Google Maps
+              </span>
             </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div
-          style={{
-            marginTop: "80px",
-            paddingTop: "24px",
-            textAlign: "center",
-            borderTop: `1px solid ${
-              isStrangerWorld
-                ? "rgba(239,68,68,0.3)"
-                : "rgba(59,130,246,0.3)"
-            }`,
-          }}
-        >
-          <p
-            style={{
-              ...commonTextStyle,
-              fontSize: "14px",
-              color: isStrangerWorld ? "#fecaca" : "#e0f2fe",
-            }}
-          >
-            Special thanks to
-            <br />
-            <strong>Dr. R. Saravanan, M.E., Ph.D.</strong>
-            <br />
-            Head of the Department
-          </p>
-
-          <p
-            style={{
-              ...commonTextStyle,
-              fontSize: "14px",
-              color: isStrangerWorld
-                ? "rgba(252,165,165,0.5)"
-                : "rgba(203,213,225,0.6)",
-            }}
-          >
-            © 2026 INNOVATE8 - Department of Computer Science and Engineering
-          </p>
+          </a>
         </div>
       </div>
     </section>
